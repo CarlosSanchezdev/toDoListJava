@@ -3,32 +3,42 @@ package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
 
 import static conexionBBDD.CConnection.Conexion;
 
 public class Task extends JFrame{
+    PreparedStatement ps;
+    Statement st;
+    ResultSet r;
+    DefaultListModel mod = new DefaultListModel();
 
 
-
-    private JButton connectButton;
+    private JButton readButton;
     private JTextField titleText;
     private JTextField descriptionText;
     private JButton anadirButton;
     private JButton modificarButton;
     private JButton eliminarButton;
-    private JTextPane textPane1;
     private JTextField textField3;
     private JPanel mainPanel;
     private JLabel label_status;
+    private JList textPanel;
 
     public JPanel getMainPanel() {
         return mainPanel;
     }
 
+    public void Leer() throws SQLException {
+        textPanel.setModel(mod);
+        st = Conexion().createStatement();
+        r = st.executeQuery("SELECT Id, Titulo, Descripcion FROM Task");
+        mod.removeAllElements();
+        while (r.next()){
+            mod.addElement(r.getString(1) + "" + r.getString(2) + "" + r.getString(3));
+        }
 
+    }
 public void anadir(){
     try {
 
@@ -55,10 +65,14 @@ public void anadir(){
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-    connectButton.addActionListener(new ActionListener() {
+    readButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e)  {
-
+            try {
+                Leer();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
 
 
         }
