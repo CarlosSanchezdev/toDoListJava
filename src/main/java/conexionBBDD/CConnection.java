@@ -2,6 +2,7 @@ package conexionBBDD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 public class CConnection {
@@ -9,7 +10,8 @@ public class CConnection {
         private static final String driver="com.mysql.cj.jdbc.Driver";
         private static final String bbdd="jdbc:mysql://localhost:3306/CRUD";
         private static final String usuario ="root";
-        private static final String clave="1234";
+        private static final String clave="";
+
 
         public static Connection Conexion(){
 

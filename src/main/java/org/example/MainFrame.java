@@ -1,7 +1,10 @@
 package org.example;
 
 import javax.swing.*;
-import java.awt.*;
+
+import java.sql.SQLException;
+
+import static conexionBBDD.CConnection.Conexion;
 
 public class MainFrame extends Task{
     public MainFrame(){
@@ -12,4 +15,6 @@ public class MainFrame extends Task{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
+
+
 }
