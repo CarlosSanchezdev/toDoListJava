@@ -77,16 +77,28 @@ public void anadir(){
 
 }
 
-public void update() throws SQLException {
+public void update()  {
 
-    PreparedStatement ps = Conexion().prepareStatement("");
-
-    String id = idText.getText().trim();
+    try{
+    int id = Integer.parseInt(idText.getText());
     String newTitle = titleText.getText().trim();
     String newDescription = descriptionText.getText().trim();
 
-    String query = "update task " + "set titulo= ";
+    String query = "update task set titulo = ? , descripcion = ? where id = ?";
+    PreparedStatement ps = Conexion().prepareStatement(query);
 
+
+    ps.setString(1, titleText.getText());
+    ps.setString(2, descriptionText.getText());
+        ps.setInt(3,id);
+     ps.executeUpdate();
+       System.out.println("Actualizacion con exito");
+
+    }
+    catch(Exception i)
+    {
+    System.out.println(i);
+    }
 }
 
     public Task() {
@@ -119,12 +131,7 @@ public void update() throws SQLException {
         modificarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    update();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
+              update();            }
         });
     }
 }
