@@ -80,6 +80,7 @@
         </constraints>
         <properties>
           <text value=""/>
+          <toolTipText value=""/>
         </properties>
       </component>
       <component id="45e85" class="javax.swing.JTextField" binding="titleText">

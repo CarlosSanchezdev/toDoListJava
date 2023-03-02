@@ -29,9 +29,24 @@ public class Task extends JFrame{
         return mainPanel;
     }
 
+    public void Delete(){
+
+
+        try {
+            ps = Conexion().prepareStatement("Delete from task where Id = ? ");
+            ps.setString(1, idText.getText().trim());
+            ps.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Registro Eliminado");
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error de Registro" + e.toString());
+        }
+    }
+
     public void Leer() throws SQLException {
 
-    if(idText.getText() != null){
+    if(!idText.getText().isEmpty()){
 
         ps = Conexion().prepareStatement("select * from task where id = ? ");
 
@@ -43,11 +58,13 @@ public class Task extends JFrame{
             titleText.setText(rs.getString("titulo"));
             descriptionText.setText(rs.getString("descripcion"));
         }else{
-/*Esto lo quitaria*/
-            /*JOptionPane.showMessageDialog(null, "Tarea no encontrada");*/
+
+            JOptionPane.showMessageDialog(null, "Tarea no encontrada");
         }
 
-    }if(idText.getText().isEmpty()){
+    }
+
+    if(idText.getText().isEmpty()){
 
 
         textPanel.setModel(mod);
@@ -70,9 +87,11 @@ public void anadir(){
         titleText.setText("");
         descriptionText.setText("");
         label_status.setText("Registro con exito");
+        JOptionPane.showMessageDialog(null, "Registro con exito");
     }
     catch(Exception i){
-        System.out.println("Error al añadir");
+        JOptionPane.showMessageDialog(null, "Error al añadir");
+
     }
 
 }
@@ -126,5 +145,13 @@ public void update() throws SQLException {
                 }
             }
         });
+        eliminarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Delete();
+            }
+        });
     }
+
+
 }
