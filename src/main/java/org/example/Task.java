@@ -30,6 +30,10 @@ public class Task extends JFrame{
     }
 
     public void Leer() throws SQLException {
+
+        ps = Conexion().prepareStatement("SELECT * from Task WHERE Id = ?");
+        ps.
+
         textPanel.setModel(mod);
         st = Conexion().createStatement();
         r = st.executeQuery("SELECT Id, Titulo, Descripcion FROM Task");
