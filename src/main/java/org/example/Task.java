@@ -20,7 +20,7 @@ public class Task extends JFrame{
     private JButton anadirButton;
     private JButton modificarButton;
     private JButton eliminarButton;
-    private JTextField textField3;
+    private JTextField idText;
     private JPanel mainPanel;
     private JLabel label_status;
     private JList textPanel;
@@ -31,21 +31,36 @@ public class Task extends JFrame{
 
     public void Leer() throws SQLException {
 
-        ps = Conexion().prepareStatement("SELECT * from Task WHERE Id = ?");
-        ps.
+    if(idText.getText() != null){
+
+        ps = Conexion().prepareStatement("select * from task where id = ? ");
+
+        ps.setString(1, idText.getText().trim());
+        ResultSet rs = ps.executeQuery();
+
+        if(rs.next()){
+
+            titleText.setText(rs.getString("titulo"));
+            descriptionText.setText(rs.getString("descripcion"));
+        }else{
+/*Esto lo quitaria*/
+            /*JOptionPane.showMessageDialog(null, "Tarea no encontrada");*/
+        }
+
+    }if(idText.getText().isEmpty()){
+
 
         textPanel.setModel(mod);
         st = Conexion().createStatement();
         r = st.executeQuery("SELECT Id, Titulo, Descripcion FROM Task");
         mod.removeAllElements();
-        while (r.next()){
+        while (r.next()) {
             mod.addElement(r.getString(1) + "" + r.getString(2) + "" + r.getString(3));
         }
-
+    }
     }
 public void anadir(){
     try {
-
         PreparedStatement ps = Conexion().prepareStatement("insert into task values (?, ?, ?)");
         ps.setString(1, "0");
         ps.setString(2, titleText.getText().trim());
@@ -59,6 +74,18 @@ public void anadir(){
     catch(Exception i){
         System.out.println("Error al añadir");
     }
+
+}
+
+public void update() throws SQLException {
+
+    PreparedStatement ps = Conexion().prepareStatement("");
+
+    String id = idText.getText().trim();
+    String newTitle = titleText.getText().trim();
+    String newDescription = descriptionText.getText().trim();
+
+    String query = "update task " + "set titulo= ";
 
 }
 
@@ -87,6 +114,16 @@ public void anadir(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 anadir();
+            }
+        });
+        modificarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    update();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
