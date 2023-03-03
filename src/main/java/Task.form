@@ -34,7 +34,9 @@
       </component>
       <component id="d6945" class="javax.swing.JButton" binding="modificarButton" default-binding="true">
         <constraints>
-          <grid row="5" column="3" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="3" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="159" height="30"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Modificar"/>
@@ -42,18 +44,12 @@
       </component>
       <component id="4624f" class="javax.swing.JButton" binding="eliminarButton" default-binding="true">
         <constraints>
-          <grid row="5" column="4" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="4" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="164" height="30"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Eliminar"/>
-        </properties>
-      </component>
-      <component id="d1fa" class="javax.swing.JButton" binding="readButton">
-        <constraints>
-          <grid row="5" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Leer"/>
         </properties>
       </component>
       <component id="bec8d" class="javax.swing.JTextField" binding="descriptionText">
@@ -106,6 +102,14 @@
           </grid>
         </constraints>
         <properties/>
+      </component>
+      <component id="d1fa" class="javax.swing.JButton" binding="readButton">
+        <constraints>
+          <grid row="0" column="5" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Leer"/>
+        </properties>
       </component>
     </children>
   </grid>
