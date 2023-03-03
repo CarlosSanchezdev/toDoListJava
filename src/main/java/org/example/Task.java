@@ -72,6 +72,13 @@ public class Task extends JFrame{
             public void actionPerformed(ActionEvent e) {
               Update update = new Update();
               update.Update(ps, idText, titleText, descriptionText);
+              idText.setText("");
+              Read read = new Read();
+                try {
+                    read.Read(ps, mod, r, st, idText, titleText, descriptionText, textPanel);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

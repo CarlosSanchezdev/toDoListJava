@@ -41,7 +41,8 @@ public class Read extends Task {
                 r = st.executeQuery("SELECT Id, Titulo, Descripcion FROM Task");
                 mod.removeAllElements();
                 while (r.next()) {
-                    mod.addElement(r.getString(1) + "  " + r.getString(2) + "  " + r.getString(3));
+                    mod.addElement(r.getString(1) + ") " + r.getString(2) + " -> " + r.getString(3) +"\n"
+                    );
                 }
             }
         } catch (SQLException ex) {
