@@ -11,8 +11,10 @@ public class MainFrame extends Task{
 
         setContentPane(mainPanel);
         setTitle("Welcome");
-        setSize (450, 300);
+        setSize (1000, 400);
         setVisible(true);
+
+
     }
 
 
