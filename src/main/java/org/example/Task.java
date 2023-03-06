@@ -27,7 +27,6 @@ public class Task extends JFrame{
     private JButton eliminarButton;
     private JTextField idText;
     private JPanel mainPanel;
-    private JLabel label_status;
     private JList textPanel;
     private JButton aceptarButton;
 
@@ -65,7 +64,13 @@ public class Task extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Create create = new Create();
-                create.Create(ps, titleText, descriptionText, label_status);
+                create.Create(ps, titleText, descriptionText);
+                Read read = new Read();
+                try {
+                    read.Read(ps, mod, r, st, idText, titleText, descriptionText, textPanel);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

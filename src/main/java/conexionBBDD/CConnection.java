@@ -10,7 +10,7 @@ public class CConnection {
         private static final String driver="com.mysql.cj.jdbc.Driver";
         private static final String bbdd="jdbc:mysql://localhost:3306/CRUD";
         private static final String usuario ="root";
-        private static final String clave="";
+        private static final String clave="1234";
 
 
         public static Connection Conexion(){
