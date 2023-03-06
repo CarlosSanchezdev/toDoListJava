@@ -6,9 +6,11 @@ import Method.Read;
 import Method.Update;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.event.*;
 import java.sql.*;
+
 
 public class Task extends JFrame{
     PreparedStatement ps;
@@ -27,12 +29,22 @@ public class Task extends JFrame{
     private JPanel mainPanel;
     private JLabel label_status;
     private JList textPanel;
-
-
+    private JButton aceptarButton;
 
 
     public JPanel getMainPanel() {
+
         return mainPanel;
+
+    }
+
+    public void Inicializar(){
+        Read read = new Read();
+        try {
+            read.Read(ps, mod, r, st, idText, titleText, descriptionText, textPanel);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     public JTextField getIdText() {
@@ -40,31 +52,14 @@ public class Task extends JFrame{
     }
 
 
-
-
-    public void Inicializar()  {
-        Read read = new Read();
-        try {
-            read.Read(ps, mod, r, st, idText, titleText, descriptionText, textPanel);
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        }
-    };
-
-
     public Task() {
 
-        readButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)  {
-                Read read = new Read();
-                try {
-                    read.Read(ps, mod, r, st, idText, titleText, descriptionText, textPanel);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
+
+
+
+
+
+
 
         anadirButton.addActionListener(new ActionListener() {
             @Override
@@ -103,10 +98,29 @@ public class Task extends JFrame{
             }
         });
 
+        textPanel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                String mensaje =""+textPanel.getSelectedValue();
+                System.out.println(mensaje);
+
+                String truncated = String.format("%."+ 2 +"s", mensaje);
+                System.out.println(truncated);
+
+                idText.setText(truncated);
+                Read read = new Read();
+                try {
+                    read.Read(ps, mod, r, st, idText, titleText, descriptionText, textPanel);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+
+
     }
 
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
+
 }
