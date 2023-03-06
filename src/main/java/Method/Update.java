@@ -28,7 +28,7 @@ public class Update {
         }
         catch(Exception i)
         {
-            System.out.println(i);
+            JOptionPane.showMessageDialog(null,i.toString());
         }
     }
 }

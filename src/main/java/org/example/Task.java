@@ -8,7 +8,6 @@ import Method.Update;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
 import java.sql.*;
 
 public class Task extends JFrame{
@@ -43,6 +42,14 @@ public class Task extends JFrame{
 
 
 
+    public void Inicializar()  {
+        Read read = new Read();
+        try {
+            read.Read(ps, mod, r, st, idText, titleText, descriptionText, textPanel);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    };
 
 
     public Task() {
@@ -95,9 +102,11 @@ public class Task extends JFrame{
                 }
             }
         });
-        textPanel.addComponentListener(new ComponentAdapter() {
-        });
+
     }
 
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
